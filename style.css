@@ -1,0 +1,236 @@
+/*-----EXTERNAL CSS FILE --------*/
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    background-color: mediumslateblue;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+}
+
+/* Header styling */
+header {
+    font-size: 1.5rem;
+}
+
+header,
+form {
+    min-height: 15vh;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+/* Styling for the search input */
+#search {
+    position: relative;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    font-size: 1.8rem;
+    border: none;
+    background: white;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
+    margin: auto;
+
+
+}
+
+form input,
+form button {
+    padding: 0.5rem;
+    padding-left: 1rem;
+    font-size: 1.8rem;
+    border: none;
+    background: white;
+    border-radius: 2rem;
+}
+
+/* Button specific styles */
+form button {
+    color: rgb(255, 200, 0);
+    background: white;
+    cursor: pointer;
+    transition: all 0.3 ease;
+    margin-left: 0.5rem;
+}
+
+/* Button hover effect */
+form button:hover {
+    color: white;
+    background: rgb(255, 200, 0);
+}
+
+/* Plus icon positioning */
+.fa-plus-circle {
+    margin-top: 0.3rem;
+    margin-left: -8px;
+}
+
+/* Todo container styling */
+.todo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Todo list styling */
+.todo-list {
+    min-width: 30%;
+    list-style: none;
+}
+
+/* Individual todo item styling */
+.todo {
+    margin: 0.5rem;
+    padding-left: 0.5rem;
+    background: white;
+    color: black;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.5s;
+    border-radius: 2rem;
+}
+
+.todo li {
+    flex: 1;
+    word-wrap: break-word; /* Ensure long words break to prevent overflow */
+    overflow-wrap: break-word; /* Better cross-browser support */
+    word-break: break-word;
+}
+
+/* Button styling for editing todo */
+.edit-btn{
+    color: rgb(65, 10, 215);
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+
+/* Button styling for deleting and completing todo */
+.trash-btn, 
+.complete-btn {
+    color: white;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.complete-btn {
+    background: rgb(255, 200, 0);
+}
+
+
+/* Styling for delete button */
+.trash-btn {
+    border-top-right-radius: 1.75rem;
+    border-bottom-right-radius: 1.75rem;
+    background: rgb(171, 171, 171);
+}
+
+.todo-item {
+    padding: 0rem 0.5rem;
+}
+
+.fa-trash,
+.fa-check-circle {
+    pointer-events: none;
+}
+
+.completed {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+/* Animation for sliding effect */
+.slide {
+    transform: translateX(10rem);
+    opacity: 0;
+}
+
+/* Styling for dropdown select */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    border: none;
+}
+
+select {
+    color: rgb(255, 200, 0);
+    width: 10rem;
+    height: 3.2rem;
+    cursor: pointer;
+    padding: 1rem;
+}
+
+/* Dropdown container styling */
+.select {
+    margin: 1rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50px;
+}
+
+.select::after {
+    content: "\25BC";
+    position: absolute;
+    background: rgb(255, 200, 0);
+    top: 0;
+    right: 0;
+    padding: 1rem;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.select:hover ::after {
+    background: white;
+    color: rgb(255, 200, 0);
+}
+
+/* Media query for screens up to 425px */
+@media screen and (max-width: 768px) {
+    .todo-input {
+        display: block;
+        width: 100%;
+        /* Make input full width */
+        margin-right: 0;
+        /* Remove right margin */
+        margin-bottom: 10px;
+        /* Add bottom margin for spacing */
+    }
+
+    .todo-button {
+        display: block;
+        max-width: 50%;
+        /* Make button full width */
+    }
+
+    .select {
+        display: block;
+        max-width: 50%;
+        /* Make select container full width */
+        margin-top: 10px;
+        /* Adjust margin */
+    }
+
+}

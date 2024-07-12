@@ -10,7 +10,11 @@
 
 /* Body styling */
 body {
-    background-color: mediumslateblue;
+    background: linear-gradient(135deg, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-attachment: smooth;
     color: white;
     font-family: "Poppins", sans-serif;
     min-height: 100vh;
@@ -35,7 +39,8 @@ form {
     position: relative;
     padding: 0.5rem;
     padding-left: 1rem;
-    font-size: 1.8rem;
+    margin: auto;
+    font-size: 1.5rem;
     border: none;
     background: white;
     border-radius: 2rem;
@@ -44,7 +49,7 @@ form {
     /* Center horizontally */
     align-items: center;
     /* Center vertically */
-    margin: auto;
+   
 
 
 }
@@ -53,7 +58,7 @@ form input,
 form button {
     padding: 0.5rem;
     padding-left: 1rem;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     border: none;
     background: white;
     border-radius: 2rem;
@@ -61,7 +66,7 @@ form button {
 
 /* Button specific styles */
 form button {
-    color: rgb(255, 200, 0);
+    color: rgb(8, 19, 75);
     background: white;
     cursor: pointer;
     transition: all 0.3 ease;
@@ -71,7 +76,7 @@ form button {
 /* Button hover effect */
 form button:hover {
     color: white;
-    background: rgb(255, 200, 0);
+    background: rgb(8, 19, 75);
 }
 
 /* Plus icon positioning */
@@ -98,7 +103,7 @@ form button:hover {
     margin: 0.5rem;
     padding-left: 0.5rem;
     background: white;
-    color: black;
+    color: rgb(59, 22, 145);
     font-size: 1.5rem;
     display: flex;
     justify-content: space-between;
@@ -127,7 +132,7 @@ form button:hover {
 /* Button styling for deleting and completing todo */
 .trash-btn, 
 .complete-btn {
-    color: white;
+    color: rgba(245, 244, 248, 0.683);
     border: none;
     padding: 1rem;
     cursor: pointer;
@@ -135,7 +140,7 @@ form button:hover {
 }
 
 .complete-btn {
-    background: rgb(255, 200, 0);
+    background: rgb(6, 2, 26);
 }
 
 
@@ -143,7 +148,7 @@ form button:hover {
 .trash-btn {
     border-top-right-radius: 1.75rem;
     border-bottom-right-radius: 1.75rem;
-    background: rgb(171, 171, 171);
+    background: rgb(10, 63, 142);
 }
 
 .todo-item {
@@ -176,7 +181,7 @@ select {
 }
 
 select {
-    color: rgb(255, 200, 0);
+    color: rgb(46, 26, 146);
     width: 10rem;
     height: 3.2rem;
     cursor: pointer;
@@ -194,7 +199,7 @@ select {
 .select::after {
     content: "\25BC";
     position: absolute;
-    background: rgb(255, 200, 0);
+    background: rgb(11, 3, 95);
     top: 0;
     right: 0;
     padding: 1rem;
@@ -204,7 +209,7 @@ select {
 
 .select:hover ::after {
     background: white;
-    color: rgb(255, 200, 0);
+    color: rgb(52, 7, 82);
 }
 
 /* Media query for screens up to 425px */

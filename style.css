@@ -125,7 +125,7 @@ form button:hover {
     border: none;
     padding: 1rem;
     cursor: pointer;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 
@@ -155,7 +155,7 @@ form button:hover {
     padding: 0rem 0.5rem;
 }
 
-.fa-trash,
+.fa-edit,.fa-trash,
 .fa-check-circle {
     pointer-events: none;
 }

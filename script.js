@@ -1,6 +1,7 @@
+// // modified javascript
+
 /*------- External JavaScript ---------*/
-
-
+/*------- External JavaScript ---------*/
 // Selecting DOM elements
 const todoInput = document.querySelector(".todo-input");
 const todoButton = document.querySelector(".todo-button");
@@ -34,7 +35,7 @@ function addTodo(event) {
 function createTodoElement(todoText) {
     const todoDiv = document.createElement("div");
     todoDiv.classList.add("todo");
-    
+
     // Create <li> element for todo item text
     const newTodo = document.createElement("li");
     newTodo.innerText = todoText;
@@ -44,25 +45,50 @@ function createTodoElement(todoText) {
     // Create button for completing todo
     const completedButton = document.createElement("button");
     completedButton.innerHTML = '<i class="fas fa-check-circle"></i>';
-    completedButton.classList.add("complete-btn");
+    completedButton.classList.add("btn", "btn-success", "complete-btn"); // Add Bootstrap button classes
+    completedButton.setAttribute("data-bs-toggle", "tooltip"); // Add tooltip toggle attribute
+    completedButton.setAttribute("data-bs-placement", "top"); // Tooltip placement (top, bottom, left, right)
+    completedButton.setAttribute("title", "Mark Completed"); // Tooltip text
+
+    // Initialize the tooltip
+    new bootstrap.Tooltip(completedButton);
+
+    // Append completedButton to todoDiv or any other parent element
     todoDiv.appendChild(completedButton);
+
 
     // Create button for editing todo
     const editButton = document.createElement("button");
     editButton.innerHTML = '<i class="fas fa-edit"></i>';
-    editButton.classList.add("edit-btn");
+    editButton.classList.add("btn", "edit-btn"); // Add Bootstrap button classes
+    editButton.setAttribute("data-bs-toggle", "tooltip"); // Add tooltip toggle attribute
+    editButton.setAttribute("data-bs-placement", "top"); // Tooltip placement (top, bottom, left, right)
+    editButton.setAttribute("title", "Edit"); // Tooltip text
+
+    // Initialize the tooltip
+    new bootstrap.Tooltip(editButton);
+
+    // Append editButton to todoDiv or any other parent element
     todoDiv.appendChild(editButton);
 
     // Create button for deleting todo
     const trashButton = document.createElement("button");
     trashButton.innerHTML = '<i class="fas fa-trash"></i>';
-    trashButton.classList.add("trash-btn");
+    trashButton.classList.add("btn", "btn-danger", "trash-btn"); // Add Bootstrap button classes
+    trashButton.setAttribute("data-bs-toggle", "tooltip"); // Add tooltip toggle attribute
+    trashButton.setAttribute("data-bs-placement", "top"); // Tooltip placement (top, bottom, left, right)
+    trashButton.setAttribute("title", "Delete"); // Tooltip text
+
+    // Initialize the tooltip
+    new bootstrap.Tooltip(trashButton);
+
+    // Append trashButton to todoDiv or any other parent element
     todoDiv.appendChild(trashButton);
 
     todoList.appendChild(todoDiv);
 }
 
-    // Function to handle delete and complete actions on todos
+// Function to handle delete and complete actions on todos
 function deleteCheck(e) {
     const item = e.target;
 
@@ -86,12 +112,52 @@ function editTodo(e) {
     const item = e.target;
     if (item.classList.contains("edit-btn")) {
         const todo = item.parentElement;
-        const todoText = todo.querySelector(".todo-item").innerText;
-        const newText = prompt("Edit your todo:", todoText);
-        if (newText !== null && newText !== "") {
-            todo.querySelector(".todo-item").innerText = newText;
-            updateLocalTodos(todoText, newText);
+        const todoTextElement = todo.querySelector(".todo-item");
+        const oldTodoText = todoTextElement.innerText;
+
+        // Create an input element for editing
+        const newTextElement = document.createElement('input');
+        newTextElement.type = 'text';
+        newTextElement.value = oldTodoText;
+        newTextElement.classList.add('todo-item', 'edit-mode');
+
+        // Replace the todo item text with the input element
+        todoTextElement.replaceWith(newTextElement);
+
+        // Focus on the input element
+        newTextElement.focus();
+
+        // Save changes on enter key press or focus out
+        function saveChanges() {
+            const newText = newTextElement.value.trim();
+            if (newText !== "") {
+                // Update the todo item text in the UI with the new text
+                todoTextElement.innerText = newText;
+
+                // Update local storage with the new text
+                updateLocalTodos(oldTodoText, newText);
+
+                // Replace input element with updated todo item text
+                newTextElement.replaceWith(todoTextElement);
+
+                // Remove event listeners after saving changes
+                newTextElement.removeEventListener('keypress', handleKeyPress);
+                newTextElement.removeEventListener('blur', saveChanges);
+            }
         }
+
+        // Handle enter key press
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') {
+                saveChanges();
+            }
+        }
+
+        // Handle focus out
+        newTextElement.addEventListener('blur', saveChanges);
+
+        // Attach enter key press listener
+        newTextElement.addEventListener('keypress', handleKeyPress);
     }
 }
 
@@ -135,7 +201,7 @@ function searchTodo() {
     });
 }
 
-// Function to save todos to local storage ------> inspect-aplication----->localstorage---->http port
+// Function to save todos to local storage
 function saveLocalTodos(todo) {
     let todos;
     if (localStorage.getItem("todos") === null) {
@@ -188,5 +254,6 @@ function updateLocalTodos(oldTodoText, newTodoText) {
         localStorage.setItem("todos", JSON.stringify(todos));
     }
 }
+
 
 

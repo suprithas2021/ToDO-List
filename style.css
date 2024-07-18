@@ -51,6 +51,7 @@ form {
     /* Center vertically */
     margin-bottom: 3rem;
     margin-top: 0.1rem;
+    max-width: 50%;
 
 
 }
@@ -197,9 +198,10 @@ select {
 select {
     color: rgb(46, 26, 146);
     width: 10rem;
-    height: 3.2rem;
+    height: 3.6rem;
     cursor: pointer;
     padding: 1rem;
+    font-size: 1rem;
 }
 
 /* Dropdown container styling */
@@ -224,32 +226,66 @@ select {
 .select:hover ::after {
     background: white;
     color: rgb(52, 7, 82);
-}
+} 
 
-/* Media query for screens up to 425px */
+
 @media screen and (max-width: 768px) {
-    .todo-input {
-        display: block;
-        width: 100%;
-        /* Make input full width */
-        margin-right: 0;
-        /* Remove right margin */
-        margin-bottom: 10px;
-        /* Add bottom margin for spacing */
+    .header-content {
+        flex-wrap: wrap; /* Allow items to wrap on smaller screens */
     }
 
-    .todo-button {
-        display: block;
-        max-width: 50%;
-        /* Make button full width */
+    form {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center items horizontally */
     }
 
-    .select {
-        display: block;
-        max-width: 50%;
-        /* Make select container full width */
-        margin-top: 10px;
-        /* Adjust margin */
+    #search {
+        margin-bottom: 10px; /* Add spacing between input and select */
     }
 
+    #select {
+        margin-top: 10px; /* Add space above select */
+    }
+
+    .todo {
+        position: relative; /* Ensure buttons are positioned relative to this container */
+        padding: 0; /* Padding for each todo item */
+        background-color: #f8f9fa; /* Background color for each todo item */
+        border: 1px solid #ccc; /* Border for each todo item */
+        margin-bottom: 10px; /* Spacing between each todo item */
+    }
+
+    .todo-actions {
+        display: flex;
+        justify-content: space-between; /* Space buttons evenly in a row */
+        align-items: center; /* Center items vertically */
+        margin-top: 10px; /* Spacing above the buttons */
+    }
+
+    .todo-actions button {
+        padding: 8px 16px; /* Padding for buttons */
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s; /* Smooth transition for hover effect */
+    }
+
+    .todo-actions button.edit-btn {
+        background-color: #ffc107; /* Yellow background for edit button */
+        color: #212529; /* Dark text color */
+    }
+
+    .todo-actions button.trash-btn {
+        background-color: #dc3545; /* Red background for trash button */
+        color: #fff; /* White text color */
+    }
+
+    .todo-actions button.completed-btn {
+        background-color: #28a745; /* Green background for completed button */
+        color: #fff; /* White text color */
+    }
 }
+
+
+
+
+

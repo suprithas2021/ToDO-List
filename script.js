@@ -27,9 +27,21 @@ function addTodo(event) {
         return;
     }
 
+    // Check for duplicates
+    if (isDuplicate(todoText)) {
+        alert("This todo item already exists!");
+        return;
+    }
+
     createTodoElement(todoText);
     saveLocalTodos(todoText);
     todoInput.value = "";
+}
+
+// Function to check if a todo item is a duplicate
+function isDuplicate(todoText) {
+    const todos = JSON.parse(localStorage.getItem("todos")) || [];
+    return todos.includes(todoText);
 }
 
 // Function to create a new todo element
@@ -149,7 +161,7 @@ function handleTodoActions(event) {
         // Save changes on enter key press or focus out
         function saveChanges() {
             const newText = newTextElement.value.trim();
-            if (newText !== "") {
+            if (newText !== "" && newText !== oldTodoText) {
                 // Update the todo item text in the UI with the new text
                 const updatedTodoTextElement = document.createElement("li");
                 updatedTodoTextElement.innerText = newText;

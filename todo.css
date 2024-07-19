@@ -1,0 +1,248 @@
+/* Reset some default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #cbf3f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* height: 100vh; */
+    max-width:100% ;
+}
+
+.main {
+    border: 2px solid #012a4a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 30px #003566;
+    border: none;
+    margin: auto;
+    position: relative;
+    background-color: #94d2bd;
+}
+
+/* Header styles */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 3px solid black;
+    width: 100%;
+    border-radius: 70%;
+}
+
+#title {
+    color: #001d3d;
+    font-style: oblique;
+    font-weight: bolder;
+}
+
+/* Form styles */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+    width: 100%;
+    align-content: center;
+}
+
+input.todo-input {
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+   
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    max-width:100%;
+    border: none;
+    border-bottom: 2px solid black;
+    outline: none;
+    
+}
+
+button.todo-button {
+    padding: 10px;
+    /* margin-bottom: 10px; */
+    background-color: #2c365e;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 0 20px 20px 0;
+    align-items: center;
+    margin-left: -50px;
+    border-bottom: 2px solid black;
+}
+
+button.todo-button:hover {
+    background-color: #09b396;
+    color: #fcfbfa;
+}
+
+#search {
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+   
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    max-width:100%;
+    border: none;
+    border-bottom: 2px solid black;
+    outline: none;
+}
+
+.filter-todo {
+    padding: 10px;
+    margin-left: 10px;
+    background-color: #2c365e;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    align-items: center;
+    display:block;
+    width: 80px;
+    align-items: center;
+}
+
+.filter-todo:hover {
+    background-color: #09b396;
+    color: #fcfbfa;
+    box-shadow: 0 0 10px black;
+}
+
+.select {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+/* Todo list container */
+.todo-container {
+    background-color: #fff;
+    margin: 0 50px 10px 50px;
+    width: 50vh;
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.468);
+}
+
+/* Todo list styles */
+.todo-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.todo-item {
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+div.todo {
+    margin-bottom: 15px;
+}
+
+.todo-item .task {
+    flex: 1;
+}
+
+li.todo-item {
+    background-color: #1e7f7f;
+    margin: 0;
+    color:white;
+}
+
+.todo-item .delete-btn {
+    color: red;
+    cursor: pointer;
+}
+
+/* Tooltip styles (if needed) */
+.tooltip-inner:hover {
+    background-color: #333;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 3px;
+    padding: 5px 10px;
+}
+.complete-btn,
+.edit-btn,
+.trash-btn{
+    margin: 5px  ;
+}
+
+.fa-edit,
+.fa-trash,
+.fa-check-circle {
+    pointer-events: none;
+    align-items: center;
+    
+
+}
+
+.edit-btn {
+    background-color: #333;
+    color: #ccc;
+}
+
+.completed {
+    text-decoration: line-through;
+    opacity: 0.2;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    .header {
+        max-width: 100%;
+    }
+    .main{
+        max-width: 100%;
+    }
+    
+    form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .select {
+        border: #0f0501;
+        display: inline-block;
+        align-items: center;
+        margin: auto;
+    }
+    
+    .todo-input,
+    #search {
+        margin-right: 0;
+        display:inline-block;
+        justify-content:center;
+        align-items: center;
+    }
+    
+    .todo-container {
+        max-width: 100%;
+    }
+} 

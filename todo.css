@@ -261,6 +261,7 @@ li.todo-item {
 @media screen and (max-width: 350px) {
     body {
         margin-top: 2rem;
+        font-size:1rem ;
     }
 
     .main {

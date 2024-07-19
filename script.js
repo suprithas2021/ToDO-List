@@ -10,9 +10,10 @@ const searchInput = document.getElementById("search");
 // Event listeners
 document.addEventListener("DOMContentLoaded", getLocalTodos);
 todoButton.addEventListener("click", addTodo);
-todoList.addEventListener("click", handleTodoActions); // Listen for delete, complete, and edit clicks
+todoList.addEventListener("click", handleTodoActions);
 filterOption.addEventListener("change", filterTodo);
 searchInput.addEventListener("input", searchTodo);
+searchInput.addEventListener("keypress", clearSearchOnEnter);
 
 // Initialize Bootstrap tooltips globally
 document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(element => new bootstrap.Tooltip(element));
@@ -77,7 +78,7 @@ function createTodoElement(todoText) {
     tooltipButtons.forEach(button => new bootstrap.Tooltip(button));
 
     // Show the todo container
-    todoContainer.style.display = "inlineBlock";
+    todoContainer.style.display = "block";
 
     // Highlight the new task
     highlightTodoElement(todoDiv);
@@ -89,14 +90,14 @@ function handleTodoActions(event) {
     const todo = item.closest(".todo");
 
     if (item.classList.contains("trash-btn")) {
-        // Dispose of tooltips before deleting
-        const tooltipInstance = bootstrap.Tooltip.getInstance(item);
-        if (tooltipInstance) {
-            tooltipInstance.dispose();
-        }
-
         // Show confirmation message before deleting
         if (confirm("Are you sure you want to delete this task?")) {
+            // Dispose of tooltips before deleting
+            const tooltipInstance = bootstrap.Tooltip.getInstance(item);
+            if (tooltipInstance) {
+                tooltipInstance.dispose();
+            }
+
             todo.classList.add("slide");
             removeLocalTodos(todo);
             todo.addEventListener("transitionend", function() {
@@ -114,16 +115,10 @@ function handleTodoActions(event) {
         const todo = item.parentElement;
         todo.classList.toggle("completed");
     }
-    
+
     if (item.classList.contains("edit-btn")) {
         const todoTextElement = todo.querySelector(".todo-item");
         const oldTodoText = todoTextElement.innerText;
-
-        // Dispose of tooltip before editing
-        const tooltipInstance = bootstrap.Tooltip.getInstance(item);
-        // if (tooltipInstance) {
-        //     tooltipInstance.dispose();
-        // }
 
         // Create an input element for editing
         const newTextElement = document.createElement('input');
@@ -202,7 +197,6 @@ function filterTodo() {
 }
 
 // Function to search todos based on input value
-// Function to search todos based on input value
 function searchTodo() {
     const searchTerm = searchInput.value.toLowerCase();
     const todos = todoList.childNodes;
@@ -216,52 +210,28 @@ function searchTodo() {
 function clearSearchOnEnter(event) {
     if (event.key === 'Enter') {
         searchInput.value = '';
+        searchTodo(); // Trigger search to update the list
     }
 }
 
-// Event listener for search input
-searchInput.addEventListener("input", searchTodo);
-searchInput.addEventListener("keypress", clearSearchOnEnter);
-
-
 // Function to save todos to local storage
 function saveLocalTodos(todo) {
-    let todos;
-    if (localStorage.getItem("todos") === null) {
-        todos = [];
-    } else {
-        todos = JSON.parse(localStorage.getItem("todos"));
-    }
+    let todos = JSON.parse(localStorage.getItem("todos")) || [];
     todos.push(todo);
     localStorage.setItem("todos", JSON.stringify(todos));
 }
 
 // Function to retrieve todos from local storage
 function getLocalTodos() {
-    let todos;
-    if (localStorage.getItem("todos") === null) {
-        todos = [];
-    } else {
-        todos = JSON.parse(localStorage.getItem("todos"));
-    }
+    let todos = JSON.parse(localStorage.getItem("todos")) || [];
     todos.forEach(todo => createTodoElement(todo));
     // Hide the todo container if there are no todos
-    if (todos.length === 0) {
-        todoContainer.style.display = "none";
-    } else {
-        todoContainer.style.display = "block";
-    }
+    todoContainer.style.display = todos.length === 0 ? "none" : "block";
 }
 
 // Function to remove todo from local storage
 function removeLocalTodos(todo) {
-    let todos;
-    if (localStorage.getItem("todos") === null) {
-        todos = [];
-    } else {
-        todos = JSON.parse(localStorage.getItem("todos"));
-    }
-
+    let todos = JSON.parse(localStorage.getItem("todos")) || [];
     const todoText = todo.querySelector(".todo-item").innerText;
     todos = todos.filter(t => t !== todoText);
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -269,12 +239,7 @@ function removeLocalTodos(todo) {
 
 // Function to update todo in local storage
 function updateLocalTodos(oldTodoText, newTodoText) {
-    let todos;
-    if (localStorage.getItem("todos") === null) {
-        todos = [];
-    } else {
-        todos = JSON.parse(localStorage.getItem("todos"));
-    }
+    let todos = JSON.parse(localStorage.getItem("todos")) || [];
     const index = todos.indexOf(oldTodoText);
     if (index !== -1) {
         todos[index] = newTodoText;

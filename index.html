@@ -25,39 +25,43 @@
 
 <body>
     <!-- Header section -->
-     <div class="main">
-    <header>
-        <h1 id="title">TO-DO List</h1>
+    <div class="main">
+        <header>
+            <h1 id="title">TO-DO List</h1>
 
-    </header>
-    <!-- Form for adding todos -->
-    <form action="">
-        <div class="task-in">
-        <input type="text" class="todo-input" placeholder="What is your task?" data-bs-toggle="tooltip"
-            data-bs-placement="bottom" title="your task">
-        <button class="todo-button" type="submit" data-bs-toggle="tooltip" data-bs-placement="bottom"
-            title="click here to add">
-            <i class="fas fa-plus-circle fa-lg"></i>
-        </button>
-    </div>
-        <div class="select">
-            <select name="todos" class="filter-todo" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                title="task-info">
-                <option value="all">Sort</option>
-                <option value="completed">Completed</option>
-                <option value="incomplete">Incomplete</option>
-            </select>
+        </header>
+        <!-- Form for adding todos -->
+        <form action="">
+            <div class="task-in">
+                <input type="text" class="todo-input" placeholder="What is your task?" data-bs-toggle="tooltip"
+                    data-bs-placement="bottom" title="your task">
+                <button class="todo-button" type="submit" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                    title="click here to add">
+                    <i class="fas fa-plus-circle fa-lg">ADD</i> 
+                </button>
+            </div>
+
+        </form>
+        <div class="second">
+
+
+            <!-- Input for searching todos -->
+            <input type="text" id="search" class="todo-input" placeholder="Search task" data-bs-toggle="tooltip"
+                data-bs-placement="bottom" title="search here">
+            <div class="select">
+                <select name="todos" class="filter-todo" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                    title="task-info">
+                    <option value="all">All</option>
+                    <option value="completed">Completed</option>
+                    <option value="incomplete">Incomplete</option>
+                </select>
+            </div>
         </div>
-    </form>
-    <!-- Input for searching todos -->
-    <input type="text" id="search" class="todo-input" placeholder="Search task" data-bs-toggle="tooltip"
-        data-bs-placement="bottom" title="search here">
-
-    <!-- Container for displaying todos -->
-    <div class="todo-container">
-        <ul class="todo-list"></ul>
+        <!-- Container for displaying todos -->
+        <div class="todo-container">
+            <ul class="todo-list"></ul>
+        </div>
     </div>
-</div>
     <!-- External JavaScript file -->
     <script src="./script.js"></script>
     <script>

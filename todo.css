@@ -401,15 +401,8 @@ li.completed .todo-item {
         max-width: 90vw;
     }
 }
-@media screen and (max-width: 320px) {
-    #search {
 
-        display: inline-block;
-        justify-content: center;
-        align-items: center;
-        margin-left: 150px;
-    }
-}
+   
 @media screen and ((min-width:600px ) and (max-width: 900px)){
     #search {
 
@@ -418,4 +411,16 @@ li.completed .todo-item {
         align-items: center;
         margin-left: 50px;
     }
+}
+@media screen and ((min-width:300px ) and (max-width: 350px))
+{
+    #search {
+
+        display: inline-block;
+        justify-content: center;
+        align-items: center;
+        margin:0;
+        margin-bottom: 1rem;
+    }
+
 }

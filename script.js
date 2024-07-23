@@ -22,11 +22,11 @@ function addTodo(event) {
     event.preventDefault();
     const todoText = todoInput.value.trim();
     if (!todoText) {
-        alert("Please enter a todo!");
+        alert("Please enter a To-do!");
         return;
     }
     if (isDuplicate(todoText)) {
-        alert("This todo item already exists!");
+        alert("This To-do item already exists!");
         return;
     }
     createTodoElement(todoText);
@@ -80,7 +80,7 @@ function handleTodoActions(event) {
     const item = event.target;
     const todo = item.closest(".todo");
 
-    if (item.classList.contains("trash-btn") && confirm("Are you sure you want to delete this todo?")) {
+    if (item.classList.contains("trash-btn") && confirm("Are you sure you want to delete this TO-DO?")) {
         bootstrap.Tooltip.getInstance(item).dispose();
         todo.classList.add("slide");
         removeLocalTodos(todo);
@@ -107,6 +107,7 @@ function toggleComplete(todo) {
 
     if (todo.classList.contains("completed")) {
         editButton.disabled = true;
+        completedButton.disabled = true;
         editButton.style.display = 'none';
         todoTextElement.style.textDecoration = 'line-through';
     } else {
